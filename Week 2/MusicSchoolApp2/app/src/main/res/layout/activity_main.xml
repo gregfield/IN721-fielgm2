@@ -13,22 +13,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Which Instrument do you want to learn to play?"
+        android:text="Enrol For Music Lessons!"
         android:id="@+id/selectInstrumentHeading"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/RadioBtnHeading"
+        android:textSize="@dimen/textSize"
+        android:id="@+id/rbtnHeading"
+        android:layout_alignTop="@+id/rgInstruments"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="29dp" />
 
     <RadioGroup
         android:layout_width="214dp"
         android:layout_height="190dp"
         android:layout_gravity="center_vertical"
-        android:layout_marginTop="45dp"
         android:id="@+id/rgInstruments"
         android:layout_below="@+id/selectInstrumentHeading"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="42dp"
-        android:layout_marginEnd="42dp">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <RadioButton
             android:layout_width="wrap_content"
@@ -57,15 +65,34 @@
 
     </RadioGroup>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/SpinnerHeading"
+        android:textSize="@dimen/textSize"
+        android:id="@+id/spinnerHeading"
+        android:layout_below="@+id/rgInstruments"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/monthSpinner"
+        android:layout_below="@+id/rgInstruments"
+        android:layout_alignLeft="@+id/rgInstruments"
+        android:layout_alignStart="@+id/rgInstruments"
+        android:layout_marginTop="35dp" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enrol In Course"
         android:id="@+id/enrol"
-        android:layout_marginTop="29dp"
-        android:layout_below="@+id/rgInstruments"
-        android:layout_alignLeft="@+id/rgInstruments"
-        android:layout_alignStart="@+id/rgInstruments" />
+        android:layout_below="@+id/monthSpinner"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -74,7 +101,7 @@
         android:id="@+id/enrolmentConfirm"
         android:layout_below="@+id/enrol"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="34dp"
-        android:layout_marginTop="35dp" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="25dp" />
 
 </RelativeLayout>
