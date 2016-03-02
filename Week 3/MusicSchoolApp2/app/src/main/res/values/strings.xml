@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MusicSchoolApp</string>
+    <string name="RadioBtnHeading">Choose Your Instrument</string>
+    <string name="SpinnerHeading">When Do You Want To Start?</string>
+</resources>
