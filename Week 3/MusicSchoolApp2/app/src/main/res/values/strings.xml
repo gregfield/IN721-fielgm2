@@ -2,4 +2,5 @@
     <string name="app_name">MusicSchoolApp</string>
     <string name="RadioBtnHeading">Choose Your Instrument</string>
     <string name="SpinnerHeading">When Do You Want To Start?</string>
+    <string name="startActivityHeading">Click Button To Continue</string>
 </resources>
