@@ -5,6 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
+
+import java.util.Timer;
+import java.util.logging.Handler;
 
 public class startActivity extends AppCompatActivity {
 
@@ -13,17 +17,17 @@ public class startActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        Button changeActivity = (Button) findViewById(R.id.nextActivityBtn);
-        changeActivity.setOnClickListener(new goToSelectInstrument());
+        RelativeLayout relLayout = (RelativeLayout) findViewById(R.id.startActivityLayout);
+        relLayout.setOnClickListener(new nextActivity());
     }
 
-    public class goToSelectInstrument implements View.OnClickListener
+    public class nextActivity implements View.OnClickListener
     {
 
         @Override
         public void onClick(View v) {
-            Intent chooseInstruIntent = new Intent(startActivity.this, MainActivity.class);
-            startActivity(chooseInstruIntent);
+            Intent chooseInstrumentIntent = new Intent(startActivity.this, MainActivity.class);
+            startActivity(chooseInstrumentIntent);
         }
     }
 }
