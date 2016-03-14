@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.tablet);
 
         Button imageviewButton =(Button) findViewById(R.id.imageVIewBtn);
         imageviewButton.setOnClickListener(new imageviewButtonOnClick());
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
             android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
 
             android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(R.id.fragment_container,imageFragment);
+            ft.replace(R.id.image_fragment_container,imageFragment);
             ft.commit();
         }
     }
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
 
             android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(R.id.fragment_container,listFragment);
+            ft.replace(R.id.list_fragment_container,listFragment);
             ft.commit();
         }
     }
