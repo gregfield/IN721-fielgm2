@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Fragments</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="ImageView">Here is an Image</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="ListView">Here is a List View</string>
+</resources>
