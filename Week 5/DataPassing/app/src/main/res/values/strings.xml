@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">DataPassing</string>
+    <string name="UserNameHeading">Your Username:</string>
+    <string name="defaultUsrNameTxt">No username chosen yet</string>
+    <string name="EnterUsrName">Enter Your Username:</string>
+</resources>
