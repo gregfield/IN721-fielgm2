@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MusicSchoolApp</string>
+    <string name="RadioBtnHeading">Choose Your Instrument</string>
+    <string name="SpinnerHeading">When Do You Want To Start?</string>
+    <string name="startActivityHeading">BIT Music School</string>
+    <string name="StartActivityYear">2016</string>
+    <string name="continueToNextScreen">Tap Anywhere To Continue</string>
+</resources>
