@@ -11,6 +11,7 @@ import android.os.Bundle;
  */
 public class ConfirmationFragment extends DialogFragment
 {
+    @Override
     public Dialog onCreateDialog(Bundle savedInstanceBundle)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -18,7 +19,7 @@ public class ConfirmationFragment extends DialogFragment
         builder.setTitle("Are You sure you want to take music lessons?");
         builder.setPositiveButton("Yes", new yesButton());
         builder.setNegativeButton("No", new noButton());
-        
+
         return builder.create();
     }
 
@@ -26,14 +27,16 @@ public class ConfirmationFragment extends DialogFragment
     {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-
+            MainActivity myActivity = (MainActivity) getActivity();
+            myActivity.confirmationClick(true);
         }
     }
     public class noButton implements DialogInterface.OnClickListener
     {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-
+            MainActivity myActivity = (MainActivity) getActivity();
+            myActivity.confirmationClick(false);
         }
     }
 
