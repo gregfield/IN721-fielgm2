@@ -71,22 +71,20 @@ public class MainActivity extends AppCompatActivity {
     public class getButton implements OnClickListener {
         @Override
         public void onClick(View v) {
-            try {
-                //checks to see if an instrument has been selected
-                //creates the radio button group
-                RadioGroup instrumentGroup = (RadioGroup) findViewById(R.id.rgInstruments);
-                //gets the radio button that is checked by using radio group checked id
-                RadioButton chosenBtn = (RadioButton) findViewById(instrumentGroup.getCheckedRadioButtonId());
-
+            //checks to see if an instrument has been selected
+            RadioGroup instrumentGroup = (RadioGroup) findViewById(R.id.rgInstruments);
+            if (instrumentGroup.getCheckedRadioButtonId()!= -1)
+            {
                 //creates dialogue fragment
                 confirmed = new ConfirmationFragment();
                 FragmentManager fm = getFragmentManager();
-                confirmed.show(fm,"confirm");
+                confirmed.show(fm, "confirm");
             }
-            catch (NullPointerException ex)
+            else
             {
                 Toast.makeText(MainActivity.this, "Please select an Instrument", Toast.LENGTH_SHORT).show();
             }
+
         }
     }
 
