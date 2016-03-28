@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">LanguageTrainer</string>
+    <string name="welcomeMessage">Welcome To The German Language Trainer</string>
+    <string name="instructions">This is designed to teach you gender association
+    for specific german words. For each question you must select what you think the
+    answer is then click the button to find out if you are correct.</string>
+    <string name="tapContinue">Tap Anywhere to continue!</string>
+</resources>
+
