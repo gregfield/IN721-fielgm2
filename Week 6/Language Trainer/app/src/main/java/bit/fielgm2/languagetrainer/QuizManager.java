@@ -33,11 +33,13 @@ public class QuizManager
         shuffle();
     }
 
+    //to give the question so it can be put on screen
     public Question getQuestion(int questionNumber)
     {
         return quizQuestions[questionNumber];
     }
 
+    //shuffles the questions array so they are in a random order
     public void shuffle()
     {
         Random random = new Random();
@@ -54,6 +56,7 @@ public class QuizManager
         }
     }
 
+    //swaps questions for the shuffle
     public void swap(int first, int second)
     {
         Question temp;

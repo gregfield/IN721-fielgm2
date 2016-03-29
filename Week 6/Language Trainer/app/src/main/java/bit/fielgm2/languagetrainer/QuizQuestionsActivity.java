@@ -125,7 +125,7 @@ public class QuizQuestionsActivity extends AppCompatActivity {
             {
                //incorrect dialog box
                 fragmentUsed = false;
-                incorrect = new IncorrectFragment();
+                incorrect = IncorrectFragment.newInstance(currentQuestion.getArticle());
                 FragmentManager fm = getFragmentManager();
                 incorrect.show(fm, "incorrect");
             }

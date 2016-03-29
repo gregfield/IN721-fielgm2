@@ -11,11 +11,20 @@ import android.os.Bundle;
  */
 public class IncorrectFragment extends DialogFragment
 {
+    public static IncorrectFragment newInstance(String article) {
+        IncorrectFragment fragmentInstance = new IncorrectFragment();
+        Bundle args = new Bundle();
+        args.putString("article", article);
+        fragmentInstance.setArguments(args);
+        return fragmentInstance;
+    }
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstance) {
+        String article = getArguments().getString("article");
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        builder.setTitle("Incorrect!");
+        builder.setTitle("Incorrect! \nThe Correct Answer was " + article);
         builder.setPositiveButton("Continue", new continueButton());
 
         return builder.create();

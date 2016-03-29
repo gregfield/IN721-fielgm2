@@ -14,10 +14,10 @@ public class CorrectFragment extends DialogFragment
     @Override
     public Dialog onCreateDialog(Bundle savedInstance) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
+        //what is displayed on the fragment
         builder.setTitle("Correct!");
         builder.setPositiveButton("Continue", new continueButton());
-
+        //shows the fragment
         return builder.create();
     }
 
@@ -25,6 +25,7 @@ public class CorrectFragment extends DialogFragment
     {
         @Override
         public void onClick(DialogInterface dialog, int which) {
+            //returns to the quiz activity
             QuizQuestionsActivity quizActivity = (QuizQuestionsActivity) getActivity();
             quizActivity.nextQuestionClick(true);
         }

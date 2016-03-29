@@ -33,15 +33,12 @@
         android:layout_marginBottom="47dp" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="Exit"
         android:id="@+id/exitBtn"
         android:layout_alignTop="@+id/playAgainBtn"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="31dp"
-        android:layout_marginEnd="31dp"
-        android:layout_toEndOf="@+id/resultTextView"
-        android:layout_toRightOf="@+id/resultTextView" />
+        android:layout_toRightOf="@+id/playAgainBtn"
+        android:layout_marginLeft="66dp"
+        android:layout_marginStart="66dp" />
 </RelativeLayout>

@@ -39,7 +39,6 @@ public class ResultsActivity extends AppCompatActivity {
     //exits application if button clicked
     public class ExitOnClick implements View.OnClickListener
     {
-
         @Override
         public void onClick(View v)
         {
