@@ -32,6 +32,11 @@ public class QuizManager
         shuffle();
     }
 
+    public Question getQuestion(int questionNumber)
+    {
+        return quizQuestions[questionNumber];
+    }
+
     public void shuffle()
     {
         Random random = new Random();

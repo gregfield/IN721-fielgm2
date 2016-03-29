@@ -14,16 +14,65 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/questNumText"
+        android:text="Question Number"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <ImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:id="@+id/nounImage"
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/questNumText"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_below="@+id/questNumText"
-        android:layout_toRightOf="@+id/questNumText"
-        android:layout_toEndOf="@+id/questNumText"
-        android:layout_marginTop="52dp" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/germanNounText"
+        android:text="noun"
+        android:layout_below="@+id/nounImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/der"
+        android:id="@+id/derRbtn"
+        android:layout_marginTop="28dp"
+        android:textSize="@dimen/rbtnTextSize"
+        android:layout_below="@+id/germanNounText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/das"
+        android:id="@+id/dasRbtn"
+        android:textSize="@dimen/rbtnTextSize"
+        android:layout_alignTop="@+id/derRbtn"
+        android:layout_alignRight="@+id/germanNounText"
+        android:layout_alignEnd="@+id/germanNounText" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/die"
+        android:id="@+id/dieRbtn"
+        android:textSize="@dimen/rbtnTextSize"
+        android:layout_alignTop="@+id/dasRbtn"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nxtQuestBtn"
+        android:id="@+id/nextQuestBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

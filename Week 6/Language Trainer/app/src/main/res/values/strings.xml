@@ -5,5 +5,9 @@
     for specific german words. For each question you must select what you think the
     answer is then click the button to find out if you are correct.</string>
     <string name="tapContinue">Tap Anywhere to continue!</string>
+    <string name="der">Der</string>
+    <string name="das">Das</string>
+    <string name="die">Die</string>
+    <string name="nxtQuestBtn">Next Question</string>
 </resources>
 
