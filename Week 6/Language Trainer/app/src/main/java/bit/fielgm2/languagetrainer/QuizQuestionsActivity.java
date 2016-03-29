@@ -16,7 +16,8 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 /*
-    make so only 1 radio button can be clicked
+    make so only 1 radio button can be clicked but dont use radio group
+    because you cant put them across the screen
  */
 public class QuizQuestionsActivity extends AppCompatActivity {
 
@@ -42,8 +43,6 @@ public class QuizQuestionsActivity extends AppCompatActivity {
         //sets the button on click handler
         Button nextQuestionBtn = (Button) findViewById(R.id.nextQuestBtn);
         nextQuestionBtn.setOnClickListener(new CheckQuestion());
-
-
     }
 
     //displays a question
