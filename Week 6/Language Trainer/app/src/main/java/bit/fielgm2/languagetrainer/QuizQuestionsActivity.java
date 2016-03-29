@@ -55,7 +55,7 @@ public class QuizQuestionsActivity extends AppCompatActivity {
         currentQuestion = quizManager.getQuestion(questionNumber);
         int resId = getResources().getIdentifier(currentQuestion.getImage(), "drawable", getPackageName());
         //displays question information
-        displayQuestionNumber.setText(String.valueOf(questionNumber+1));
+        displayQuestionNumber.setText("Question: " + String.valueOf(questionNumber+1));
         germanNoun.setText(currentQuestion.getNoun());
         nounImage.setImageResource(resId);
     }
@@ -84,8 +84,7 @@ public class QuizQuestionsActivity extends AppCompatActivity {
     }
 
     //what happens when button is clicked
-    public class CheckQuestion implements View.OnClickListener
-    {
+    public class CheckQuestion implements View.OnClickListener {
         @Override
         public void onClick(View v) {
             RadioButton der = (RadioButton) findViewById(R.id.derRbtn);
@@ -93,37 +92,31 @@ public class QuizQuestionsActivity extends AppCompatActivity {
             RadioButton die = (RadioButton) findViewById(R.id.dieRbtn);
             String checkedBtn = "";
             //check what button is selected
-            if(der.isChecked()) {
+            if (der.isChecked()) {
                 checkedBtn = der.getText().toString();
                 der.setChecked(false);
-            }
-            else if(das.isChecked()){
+            } else if (das.isChecked()) {
                 checkedBtn = das.getText().toString();
                 das.setChecked(false);
-            }
-            else if(die.isChecked()){
+            } else if (die.isChecked()) {
                 checkedBtn = die.getText().toString();
                 die.setChecked(false);
             }
 
             //if the button selected is correct
-            if(checkedBtn.equalsIgnoreCase(currentQuestion.getArticle()))
-            {
-                quizManager.setScore(quizManager.getScore()+1);
+            if (checkedBtn.equalsIgnoreCase(currentQuestion.getArticle())) {
+                quizManager.setScore(quizManager.getScore() + 1);
                 //correct dialog box
                 fragmentUsed = true;
                 correct = new CorrectFragment();
                 FragmentManager fm = getFragmentManager();
                 correct.show(fm, "correct");
-            }
-            else if(checkedBtn == "")
-            {
+            } else if (checkedBtn == "") {
                 //if nothing selected
-                Toast.makeText(QuizQuestionsActivity.this , "Please select what you think the answer is", Toast.LENGTH_SHORT).show();
-            }
-            else//if it is incorrect
+                Toast.makeText(QuizQuestionsActivity.this, "Please select what you think the answer is", Toast.LENGTH_SHORT).show();
+            } else//if it is incorrect
             {
-               //incorrect dialog box
+                //incorrect dialog box
                 fragmentUsed = false;
                 incorrect = IncorrectFragment.newInstance(currentQuestion.getArticle());
                 FragmentManager fm = getFragmentManager();
