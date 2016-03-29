@@ -16,7 +16,7 @@ public class ResultsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         int score = intent.getIntExtra("score", 0);
-
+        //displays score
         TextView displayScore = (TextView) findViewById(R.id.resultTextView);
         displayScore.setText("Your score is " + score + " out of 11");
 
@@ -26,7 +26,7 @@ public class ResultsActivity extends AppCompatActivity {
         playAgainBtn.setOnClickListener(new PlayAgainOnClick());
         exitButton.setOnClickListener(new ExitOnClick());
     }
-
+    //goes back to begining if button clicked
     public class PlayAgainOnClick implements View.OnClickListener
     {
         @Override
@@ -36,14 +36,17 @@ public class ResultsActivity extends AppCompatActivity {
             startActivity(startActivity);
         }
     }
-
+    //exits application if button clicked
     public class ExitOnClick implements View.OnClickListener
     {
 
         @Override
         public void onClick(View v)
         {
-            finish();
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
         }
     }
 }

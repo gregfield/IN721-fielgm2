@@ -37,12 +37,14 @@ public class QuizQuestionsActivity extends AppCompatActivity {
         //displays the first question
         displayQuestion();
 
+        //sets the button on click handler
         Button nextQuestionBtn = (Button) findViewById(R.id.nextQuestBtn);
         nextQuestionBtn.setOnClickListener(new CheckQuestion());
 
 
     }
 
+    //displays a question
     public void displayQuestion()
     {
         TextView displayQuestionNumber = (TextView) findViewById(R.id.questNumText);
@@ -58,6 +60,7 @@ public class QuizQuestionsActivity extends AppCompatActivity {
         nounImage.setImageResource(resId);
     }
 
+    //what happens when the dialog fragment continue button is clicked
     public void nextQuestionClick(boolean nextQuest)
     {
         if (fragmentUsed == true) {
@@ -66,16 +69,21 @@ public class QuizQuestionsActivity extends AppCompatActivity {
         else{
             incorrect.dismiss();
         }
+        //goes to result activity when all questions have been done
         if(questionNumber == 10)
         {
             Intent resultActivity = new Intent(QuizQuestionsActivity.this, ResultsActivity.class);
             resultActivity.putExtra("score", quizManager.getScore());
             startActivity(resultActivity);
+            finish();
+            return;
         }
+        //tells the next question to display
         questionNumber++;
         displayQuestion();
     }
 
+    //what happens when button is clicked
     public class CheckQuestion implements View.OnClickListener
     {
         @Override
@@ -98,7 +106,8 @@ public class QuizQuestionsActivity extends AppCompatActivity {
                 die.setChecked(false);
             }
 
-            if(checkedBtn == currentQuestion.getArticle())
+            //if the button selected is correct
+            if(checkedBtn.equalsIgnoreCase(currentQuestion.getArticle()))
             {
                 quizManager.setScore(quizManager.getScore()+1);
                 //correct dialog box
@@ -112,7 +121,7 @@ public class QuizQuestionsActivity extends AppCompatActivity {
                 //if nothing selected
                 Toast.makeText(QuizQuestionsActivity.this , "Please select what you think the answer is", Toast.LENGTH_SHORT).show();
             }
-            else
+            else//if it is incorrect
             {
                //incorrect dialog box
                 fragmentUsed = false;
