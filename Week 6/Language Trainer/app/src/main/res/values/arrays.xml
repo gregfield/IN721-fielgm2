@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="nouns">
+        <item>Apfel</item>
+        <item>Auto</item>
+        <item>Baum</item>
+        <item>Ente</item>
+        <item>Haus</item>
+        <item>Hexe</item>
+        <item>Kuh</item>
+        <item>Milch</item>
+        <item>Schaf</item>
+        <item>Strasse</item>
+        <item>Stuhl</item>
+    </string-array>
+    <string-array name="englishTranslation">
+        <item>Apple</item>
+        <item>Car</item>
+        <item>Tree</item>
+        <item>Duck</item>
+        <item>House</item>
+        <item>Witch</item>
+        <item>Cow</item>
+        <item>Milk</item>
+        <item>Sheep</item>
+        <item>Street</item>
+        <item>Chair</item>
+    </string-array>
+    <string-array name="article">
+        <item>Der</item>
+        <item>Das</item>
+        <item>Der</item>
+        <item>Die</item>
+        <item>Das</item>
+        <item>Die</item>
+        <item>Die</item>
+        <item>Die</item>
+        <item>Das</item>
+        <item>Die</item>
+        <item>Der</item>
+    </string-array>
+    <string-array name="gender">
+        <item>Masculine</item>
+        <item>Neutral</item>
+        <item>Masculine</item>
+        <item>Feminine</item>
+        <item>Neutral</item>
+        <item>Feminine</item>
+        <item>Feminine</item>
+        <item>Feminine</item>
+        <item>Neutral</item>
+        <item>Feminine</item>
+        <item>Masculine</item>
+    </string-array>
+    <string-array name="images">
+        <item>apple</item>
+        <item>car</item>
+        <item>tree</item>
+        <item>duck</item>
+        <item>house</item>
+        <item>witch</item>
+        <item>cow</item>
+        <item>milk</item>
+        <item>sheep</item>
+        <item>street</item>
+        <item>chair</item>
+    </string-array>
+</resources>
