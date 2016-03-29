@@ -15,7 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
-
+/*
+    make so only 1 radio button can be clicked
+ */
 public class QuizQuestionsActivity extends AppCompatActivity {
 
     QuizManager quizManager;
