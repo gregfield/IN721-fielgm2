@@ -1,5 +1,6 @@
 package bit.fielgm2.languagetrainer;
 
+import android.content.Context;
 import android.content.res.Resources;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -10,19 +11,19 @@ import java.util.ResourceBundle;
 public class QuizManager
 {
     private final int NUMQUESTIONS = 11;
+    private int score;
     Question[] quizQuestions;
 
-    public QuizManager()
+    public QuizManager(Context context)
     {
         quizQuestions = new Question[NUMQUESTIONS];
 
         //getting the string arrays
-        Resources resourceMachine = Resources.getSystem();
-        String[] nouns = resourceMachine.getStringArray(R.array.nouns);
-        String[] englishTranslation = resourceMachine.getStringArray(R.array.englishTranslation);
-        String[] article = resourceMachine.getStringArray(R.array.article);
-        String[] gender = resourceMachine.getStringArray(R.array.gender);
-        String[] image = resourceMachine.getStringArray(R.array.images);
+        String[] nouns = context.getResources().getStringArray(R.array.nouns);
+        String[] englishTranslation = context.getResources().getStringArray(R.array.englishTranslation);
+        String[] article = context.getResources().getStringArray(R.array.article);
+        String[] gender = context.getResources().getStringArray(R.array.gender);
+        String[] image = context.getResources().getStringArray(R.array.images);
 
         //creates each of the questions and gives it the information it needs
         for (int i = 0; i < NUMQUESTIONS; i++)
@@ -60,4 +61,7 @@ public class QuizManager
         quizQuestions[first] = quizQuestions[second];
         quizQuestions[second] = temp;
     }
+
+    public int getScore(){return score;}
+    public void setScore(int score){this.score = score;}
 }

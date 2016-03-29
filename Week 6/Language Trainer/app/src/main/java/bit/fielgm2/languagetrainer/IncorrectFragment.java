@@ -26,7 +26,7 @@ public class IncorrectFragment extends DialogFragment
         @Override
         public void onClick(DialogInterface dialog, int which) {
             QuizQuestionsActivity quizActivity = (QuizQuestionsActivity) getActivity();
-            quizActivity.confirmationClick(true);
+            quizActivity.nextQuestionClick(true);
         }
     }
 }
