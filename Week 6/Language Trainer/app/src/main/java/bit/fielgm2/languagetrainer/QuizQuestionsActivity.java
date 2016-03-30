@@ -66,6 +66,7 @@ public class QuizQuestionsActivity extends AppCompatActivity {
     {
         if (fragmentUsed == true) {
             correct.dismiss();
+            quizManager.setScore(quizManager.getScore() + 1);
         }
         else{
             incorrect.dismiss();
@@ -106,7 +107,6 @@ public class QuizQuestionsActivity extends AppCompatActivity {
 
             //if the button selected is correct
             if (checkedBtn.equalsIgnoreCase(currentQuestion.getArticle())) {
-                quizManager.setScore(quizManager.getScore() + 1);
                 //correct dialog box
                 fragmentUsed = true;
                 correct = new CorrectFragment();
