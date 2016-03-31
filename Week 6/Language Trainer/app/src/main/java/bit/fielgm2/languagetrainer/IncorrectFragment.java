@@ -25,7 +25,7 @@ public class IncorrectFragment extends DialogFragment
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         builder.setTitle("Incorrect! \nThe Correct Answer was " + article);
-        builder.setPositiveButton("Continue", new continueButton());
+        builder.setNeutralButton("Continue", new continueButton());
 
         return builder.create();
     }
