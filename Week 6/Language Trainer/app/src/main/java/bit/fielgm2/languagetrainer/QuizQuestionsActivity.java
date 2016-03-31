@@ -110,6 +110,7 @@ public class QuizQuestionsActivity extends AppCompatActivity {
                 //correct dialog box
                 fragmentUsed = true;
                 correct = new CorrectFragment();
+                correct.setCancelable(false);//so continue button must be clicked to exit fragment and not back button or touch outside
                 FragmentManager fm = getFragmentManager();
                 correct.show(fm, "correct");
             } else if (checkedBtn == "") {
@@ -120,9 +121,23 @@ public class QuizQuestionsActivity extends AppCompatActivity {
                 //incorrect dialog box
                 fragmentUsed = false;
                 incorrect = IncorrectFragment.newInstance(currentQuestion.getArticle());
+                incorrect.setCancelable(false);//so continue button must be clicked to exit fragment
                 FragmentManager fm = getFragmentManager();
                 incorrect.show(fm, "incorrect");
             }
         }
+    }
+
+    //only allows 1 radio button checked at a time
+    public void onRadioButtonClick(View v) {
+        RadioButton justcheckedbutton = (RadioButton) v;
+        RadioButton der = (RadioButton) findViewById(R.id.derRbtn);
+        RadioButton das = (RadioButton) findViewById(R.id.dasRbtn);
+        RadioButton die = (RadioButton) findViewById(R.id.dieRbtn);
+
+        der.setChecked(false);
+        das.setChecked(false);
+        die.setChecked(false);
+        justcheckedbutton.setChecked(true);
     }
 }

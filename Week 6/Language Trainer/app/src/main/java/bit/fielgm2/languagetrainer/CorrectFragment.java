@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.MotionEvent;
 
 /**
  * Created by Greg on 29/03/2016.
@@ -16,7 +17,8 @@ public class CorrectFragment extends DialogFragment
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         //what is displayed on the fragment
         builder.setTitle("Correct!");
-        builder.setPositiveButton("Continue", new continueButton());
+        builder.setNeutralButton("Continue", new continueButton());
+
         //shows the fragment
         return builder.create();
     }
