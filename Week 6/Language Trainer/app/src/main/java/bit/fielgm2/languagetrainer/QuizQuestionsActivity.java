@@ -130,7 +130,7 @@ public class QuizQuestionsActivity extends AppCompatActivity {
 
     //only allows 1 radio button checked at a time
     public void onRadioButtonClick(View v) {
-        RadioButton justcheckedbutton = (RadioButton) v;
+        RadioButton justCheckedButton = (RadioButton) v;
         RadioButton der = (RadioButton) findViewById(R.id.derRbtn);
         RadioButton das = (RadioButton) findViewById(R.id.dasRbtn);
         RadioButton die = (RadioButton) findViewById(R.id.dieRbtn);
@@ -138,6 +138,6 @@ public class QuizQuestionsActivity extends AppCompatActivity {
         der.setChecked(false);
         das.setChecked(false);
         die.setChecked(false);
-        justcheckedbutton.setChecked(true);
+        justCheckedButton.setChecked(true);
     }
 }
