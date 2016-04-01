@@ -3,7 +3,6 @@
     <string-array name="funThingToDoArray">
         <item>Larnach Castle</item>
         <item>Moana Pool</item>
-        <item>Monarch Cruise</item>
         <item>Octagon</item>
         <item>Olveston</item>
         <item>Peninsula</item>
@@ -16,7 +15,7 @@
     <string-array name="funThingsToDoPics">
         <item>larnach_castle</item>
         <item>moana_pool</item>
-        <item>ocatagon</item>
+        <item>octagon</item>
         <item>olveston</item>
         <item>peninsula</item>
         <item>salt_water_pool</item>

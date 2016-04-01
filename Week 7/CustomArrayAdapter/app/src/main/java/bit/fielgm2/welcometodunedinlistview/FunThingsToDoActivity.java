@@ -23,9 +23,9 @@ public class FunThingsToDoActivity extends AppCompatActivity {
 
         initialiseDataArray();
 
-        FunThingsToDoArrayAdapter adapter = new FunThingsToDoArrayAdapter(this, R.layout.custom_listview_item, funthingstodo);
+        FunThingsToDoArrayAdapter adapter = new FunThingsToDoArrayAdapter(FunThingsToDoActivity.this, R.layout.custom_listview_item, funthingstodo);
 
-        ListView listView = (ListView) findViewById(R.id.listView2);
+        ListView listView = (ListView) findViewById(R.id.funthingsListView);
         listView.setAdapter(adapter);
     }
 
@@ -39,9 +39,7 @@ public class FunThingsToDoActivity extends AppCompatActivity {
 
         for (int i = 0; i < funthingstodo.length; i++)
         {
-            int resId = getResources().getIdentifier(funToDoImages[i], "drawable", getPackageName());
-            Drawable image = getDrawable(resId);
-            funthingstodo[i] = new FunThingsToDo(funToDoArray[i], image);
+            funthingstodo[i] = new FunThingsToDo(funToDoArray[i], funToDoImages[i]);
         }
     }
 
@@ -59,12 +57,12 @@ public class FunThingsToDoActivity extends AppCompatActivity {
 
             View customView = inflater.inflate(R.layout.custom_listview_item, container, false);
 
-            ImageView image = (ImageView) findViewById(R.id.listViewImage);
-            TextView text  = (TextView) findViewById(R.id.listViewText);
+            ImageView image = (ImageView) customView.findViewById(R.id.listViewImage);
+            TextView text  = (TextView) customView.findViewById(R.id.listViewText);
 
             FunThingsToDo currentItem = getItem(position);
-
-            image.setImageDrawable(currentItem.getImage());
+            int resId = getResources().getIdentifier(currentItem.getImage(), "drawable", getPackageName());
+            image.setImageResource(resId);
             text.setText(currentItem.getFunThingToDO());
 
             return customView;

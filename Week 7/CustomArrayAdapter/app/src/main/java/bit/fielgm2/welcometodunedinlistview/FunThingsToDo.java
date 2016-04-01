@@ -8,9 +8,9 @@ import android.graphics.drawable.Drawable;
 public class FunThingsToDo
 {
     private String funThingToDO;
-    private Drawable image;
+    private String image;
 
-    public FunThingsToDo(String funThingToDO, Drawable image)
+    public FunThingsToDo(String funThingToDO, String image)
     {
         this.funThingToDO = funThingToDO;
         this.image = image;
@@ -24,11 +24,11 @@ public class FunThingsToDo
         this.funThingToDO = funThingToDO;
     }
 
-    public Drawable getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Drawable image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }
