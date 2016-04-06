@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LanguagePreferenceApp</string>
+    <string name="initialStart">No Language Selected Yet</string>
+    <string name="selectLanguage">Change Your Language</string>
 </resources>
