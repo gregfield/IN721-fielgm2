@@ -5,18 +5,18 @@ package bit.fielgm2.jsonfile;
  */
 public class Events
 {
-    private String eventName;
+    private String eventTitle;
     private String eventDescription;
 
-    public Events(String name, String description)
+    public Events(String title, String description)
     {
-        eventName = name;
+        eventTitle = title;
         eventDescription = description;
     }
 
 
-    public String getEventName() {
-        return eventName;
+    public String getEventTitle() {
+        return eventTitle;
     }
 
     public String getEventDescription() {
