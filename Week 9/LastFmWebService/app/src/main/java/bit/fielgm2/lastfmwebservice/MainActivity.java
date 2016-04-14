@@ -1,10 +1,13 @@
 package bit.fielgm2.lastfmwebservice;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.provider.CalendarContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -112,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void populateListView()
     {
+        /* for no custom array adapter
         ArrayList<String> artists = new ArrayList<String>();
         for(Artists artist : topArtists)
         {
@@ -120,6 +124,11 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.listView);
 
         ArrayAdapter adapter = new ArrayAdapter(MainActivity.this, R.layout.support_simple_spinner_dropdown_item, artists);
+        listView.setAdapter(adapter);*/
+
+        //for custom adapter
+        ListView listView = (ListView) findViewById(R.id.listView);
+        TopArtistsArrayAdapter adapter = new TopArtistsArrayAdapter(MainActivity.this, R.layout.support_simple_spinner_dropdown_item, topArtists);
         listView.setAdapter(adapter);
     }
 
@@ -127,6 +136,29 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             populateListView();
+        }
+    }
+
+    public class TopArtistsArrayAdapter extends ArrayAdapter
+    {
+        public TopArtistsArrayAdapter(Context context, int resource, ArrayList<Artists> objects) {
+            super(context, resource, objects);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup container) {
+            LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+
+            View customView = inflater.inflate(R.layout.arrayadapter_layout, container, false);
+
+            TextView text  = (TextView) customView.findViewById(R.id.listViewText);
+            TextView text2  = (TextView) customView.findViewById(R.id.listViewText2);
+
+            Artists currentArtist = (Artists) getItem(position);
+            text.setText(currentArtist.getName());
+            text2.setText(String.valueOf(currentArtist.getListnerCount()));
+
+            return customView;
         }
     }
 }
