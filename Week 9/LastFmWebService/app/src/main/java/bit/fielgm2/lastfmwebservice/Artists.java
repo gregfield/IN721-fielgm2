@@ -13,6 +13,10 @@ public class Artists
         this.name = name;
         this.listnerCount = listnerCount;
     }
+    public Artists(String name)
+    {
+        this.name = name;
+    }
 
     public String toString()
     {

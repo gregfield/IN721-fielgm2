@@ -1,6 +1,7 @@
 package bit.fielgm2.lastfmwebservice;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.provider.CalendarContract;
 import android.support.v7.app.AppCompatActivity;
@@ -37,8 +38,10 @@ public class MainActivity extends AppCompatActivity {
         GetTopArtists getTopArtists = new GetTopArtists();
         getTopArtists.execute();
 
+        Button searchBtn = (Button) findViewById(R.id.button);
         Button fillListBtn = (Button) findViewById(R.id.topArtistsBtn);
         fillListBtn.setOnClickListener(new FillList());
+        searchBtn.setOnClickListener(new SearchButtonOnClick());
     }
 
     public class GetTopArtists extends AsyncTask<Void,Void,String> {
@@ -159,6 +162,15 @@ public class MainActivity extends AppCompatActivity {
             text2.setText(String.valueOf(currentArtist.getListnerCount()));
 
             return customView;
+        }
+    }
+
+    public class SearchButtonOnClick implements View.OnClickListener
+    {
+        @Override
+        public void onClick(View v) {
+            Intent searchIntent = new Intent(MainActivity.this, SearchForArtistActivity.class);
+            startActivity(searchIntent);
         }
     }
 }
