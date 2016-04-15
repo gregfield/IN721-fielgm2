@@ -25,7 +25,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    Artists artist;
+    String pictureUrl;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,9 +47,9 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 String url = "http://ws.audioscrobbler.com/2.0/?" +
-                        "method=chart.gettopartists&" +
+                        "method=chart.gettopartists&limit=1&" +
                         "api_key=58384a2141a4b9737eacb9d0989b8a8c&" +
-                        "limit=20&format=json";
+                        "format=json";
 
                 URL URLObject = new URL(url);
 
@@ -99,8 +100,7 @@ public class MainActivity extends AppCompatActivity {
             JSONArray imageArray = eventObject.getJSONArray("image");
             JSONObject imageObject = imageArray.getJSONObject(0);
 
-            String image = imageObject.getString("#text");
-            artist = new Artists(name, image, listenerCount);
+            pictureUrl = imageObject.getString("#text");
         }
         catch (JSONException e) {
             e.printStackTrace();
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Bitmap doInBackground(String... params)
         {
-            Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.judge);;
+            Bitmap image = null;
             try {
                 String url = params[0];
 
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             GetImage getImage = new GetImage();
-            getImage.execute(artist.getImageUrl());
+            getImage.execute(pictureUrl);
         }
     }
 }
