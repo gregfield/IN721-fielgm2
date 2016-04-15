@@ -77,8 +77,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String fetchedString) {
-            TextView as = (TextView) findViewById(R.id.textView);
-            as.setText(fetchedString);
             getArtistImage(fetchedString);
         }
     }
@@ -98,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
             int listenerCount = eventObject.getInt("listeners");
 
             JSONArray imageArray = eventObject.getJSONArray("image");
-            JSONObject imageObject = imageArray.getJSONObject(0);
+            JSONObject imageObject = imageArray.getJSONObject(2);
 
             pictureUrl = imageObject.getString("#text");
         }
@@ -149,8 +147,8 @@ public class MainActivity extends AppCompatActivity {
     {
         @Override
         public void onClick(View v) {
-            GetImage getImage = new GetImage();
-            getImage.execute(pictureUrl);
+            GetImage gi = new GetImage();
+            gi.execute(pictureUrl);
         }
     }
 }
