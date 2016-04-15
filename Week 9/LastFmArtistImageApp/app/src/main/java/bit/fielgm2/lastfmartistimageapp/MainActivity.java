@@ -101,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
 
             String image = imageObject.getString("#text");
             artist = new Artists(name, image, listenerCount);
-            Toast.makeText(MainActivity.this, "hgjy", Toast.LENGTH_SHORT).show();
         }
         catch (JSONException e) {
             e.printStackTrace();
