@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
                     InputStream inputStream = imageConnection.getInputStream();
 
-                    image = BitmapFactory.decodeStream((InputStream) new URL(url).getContent());
+                    image = BitmapFactory.decodeStream(inputStream);
                 }
                 else
                 {
