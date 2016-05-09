@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     {
         @Override
         public void onClick(View v) {
-            makeLongAndLat();
             GeoPluginNearestCity nearestCity = new GeoPluginNearestCity();
             nearestCity.execute();
         }
@@ -52,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         longitude = -180.0 + random.nextDouble() * 360.0;
         latitude = -90.0 + random.nextDouble() * 180.0;
     }
+
     public void displayInfo()
     {
         TextView longandLat = (TextView) findViewById(R.id.longlatTxtView);
@@ -87,38 +87,38 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(Void... params)
         {
-            String JSONString = "";
+            String JSONString = "[[]]";
+            while (JSONString.equals("[[]]")) {
+                makeLongAndLat();
+                try {
+                    String url = "http://www.geoplugin.net/extras/location.gp?" +
+                            "lat=" + latitude + "&long=" + longitude + "&format=json";
+                    ;
 
-            try {
-                String url = "http://www.geoplugin.net/extras/location.gp?"+
-                        "lat="+latitude+"&long="+longitude+"&format=json";;
+                    URL URLObject = new URL(url);
 
-                URL URLObject = new URL(url);
+                    HttpURLConnection geoPluginConnection = (HttpURLConnection) URLObject.openConnection();
+                    geoPluginConnection.connect();
 
-                HttpURLConnection geoPluginConnection = (HttpURLConnection) URLObject.openConnection();
-                geoPluginConnection.connect();
+                    int responseCode = geoPluginConnection.getResponseCode();
+                    if (responseCode == 200) {
 
-                int responseCode = geoPluginConnection.getResponseCode();
-                if(responseCode == 200) {
+                        InputStream inputStream = geoPluginConnection.getInputStream();
+                        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
-                    InputStream inputStream = geoPluginConnection.getInputStream();
-                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-                    String responseString;
-                    StringBuilder stringBuilder = new StringBuilder();
-                    while ((responseString = bufferedReader.readLine()) != null) {
-                        stringBuilder = stringBuilder.append(responseString);
+                        String responseString;
+                        StringBuilder stringBuilder = new StringBuilder();
+                        while ((responseString = bufferedReader.readLine()) != null) {
+                            stringBuilder = stringBuilder.append(responseString);
+                        }
+                        JSONString = stringBuilder.toString();
+                    } else {
+                        Toast.makeText(MainActivity.this, "Could not Connect", Toast.LENGTH_SHORT).show();
                     }
-                    JSONString = stringBuilder.toString();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                else
-                {
-                    Toast.makeText(MainActivity.this, "Could not Connect", Toast.LENGTH_SHORT).show();
-                }
-
-            }catch (Exception e){
-                e.printStackTrace();
             }
             return JSONString;
         }
