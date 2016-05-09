@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     public class RandLongLatClickHandler implements View.OnClickListener
     {
+        //gets a city when button clicked
         @Override
         public void onClick(View v) {
             GeoPluginNearestCity nearestCity = new GeoPluginNearestCity();
@@ -49,12 +50,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //makes a new longitude and latitude
     public void makeLongAndLat()
     {
         longitude = -180.0 + random.nextDouble() * 360.0;
         latitude = -90.0 + random.nextDouble() * 180.0;
     }
 
+    //displays longitude latitude and city to the screen
     public void displayInfo()
     {
         TextView longandLat = (TextView) findViewById(R.id.longlatTxtView);
@@ -67,33 +70,33 @@ public class MainActivity extends AppCompatActivity {
         nearestCity.setText(city);
     }
 
+    //gets the nearest city and country code from JSON
     public void nearestCityJson(String JSONString){
         JSONObject JSON = null;
         try {
-
-            if(JSONString.equals("[[]]")){
-                city = "No city found.";
-            }
-            else{
                 JSON = new JSONObject(JSONString);
                 String name = JSON.getString("geoplugin_place");
                 String countryCode = JSON.getString("geoplugin_countryCode");
 
                 city = name + ", " + countryCode;
-            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
+    //gets the info from geoplugin on the internet
     public class GeoPluginNearestCity extends AsyncTask<Void,Void,String> {
 
+        //shows a progress dialog when looking for a city
         @Override
         protected void onPreExecute(){
             showProgress = ProgressDialog.show(MainActivity.this,"Progress","Looking For a Location...",true);
         }
 
-
+        //goes to geoplugin and gets the closest city to the longitude and latitude
+        //if there is no close city it keeps making new longitudes and latitudes until
+        //it finds a city
         @Override
         protected String doInBackground(Void... params)
         {
@@ -133,11 +136,67 @@ public class MainActivity extends AppCompatActivity {
             return JSONString;
         }
 
+        //closes the progress dialog then calls the methods to get the city and display it
         @Override
         protected void onPostExecute(String fetchedString) {
             showProgress.dismiss();
             nearestCityJson(fetchedString);
             displayInfo();
+        }
+    }
+
+    public class GetImageFromFlickr extends AsyncTask<Void,Void,String> {
+
+        //shows a progress dialog when looking for an image
+        @Override
+        protected void onPreExecute(){
+            showProgress = ProgressDialog.show(MainActivity.this,"Progress","Retrieving Image",true);
+        }
+
+        //gets an image from flickr
+        @Override
+        protected String doInBackground(Void... params)
+        {
+            String JSONString = "";
+            try {
+                String url = "http://api.flickr.com/services/rest/?" +
+                             "&method=" +
+                             "&api_key=eda41a123d459be0f85276d37290651e";
+
+                URL URLObject = new URL(url);
+
+                HttpURLConnection flickrConnection = (HttpURLConnection) URLObject.openConnection();
+                flickrConnection.connect();
+
+                int responseCode = flickrConnection.getResponseCode();
+                if(responseCode == 200) {
+
+                    InputStream inputStream = flickrConnection.getInputStream();
+                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                    String responseString;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    while ((responseString = bufferedReader.readLine()) != null) {
+                        stringBuilder = stringBuilder.append(responseString);
+                    }
+                    JSONString = stringBuilder.toString();
+                }
+                else
+                {
+                    Toast.makeText(MainActivity.this, "Could not Connect", Toast.LENGTH_SHORT).show();
+                }
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        return JSONString;
+        }
+
+        //closes the progress dialog then calls the methods to get the city and display it
+        @Override
+        protected void onPostExecute(String fetchedString) {
+            showProgress.dismiss();
         }
     }
 }
