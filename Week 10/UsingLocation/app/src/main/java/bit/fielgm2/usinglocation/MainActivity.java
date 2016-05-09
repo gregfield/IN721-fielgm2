@@ -1,5 +1,6 @@
 package bit.fielgm2.usinglocation;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     double latitude;
     String city;
     Random random;
+    ProgressDialog showProgress;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +87,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public class GeoPluginNearestCity extends AsyncTask<Void,Void,String> {
+
+        @Override
+        protected void onPreExecute(){
+            showProgress = ProgressDialog.show(MainActivity.this,"Progress","Looking For a Location...",true);
+        }
+
+
         @Override
         protected String doInBackground(Void... params)
         {
@@ -125,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String fetchedString) {
+            showProgress.dismiss();
             nearestCityJson(fetchedString);
             displayInfo();
         }
