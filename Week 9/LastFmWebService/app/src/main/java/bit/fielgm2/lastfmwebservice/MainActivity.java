@@ -2,6 +2,8 @@ package bit.fielgm2.lastfmwebservice;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.provider.CalendarContract;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -169,8 +172,44 @@ public class MainActivity extends AppCompatActivity {
     {
         @Override
         public void onClick(View v) {
-            Intent searchIntent = new Intent(MainActivity.this, SearchForArtistActivity.class);
-            startActivity(searchIntent);
+
+        }
+    }
+
+    public class GetImage extends AsyncTask<String,Void,Bitmap> {
+        @Override
+        protected Bitmap doInBackground(String... params)
+        {
+            Bitmap image;
+
+            try {
+                String url = params[0];
+
+                URL URLObject = new URL(url);
+
+                HttpURLConnection imageConnection = (HttpURLConnection) URLObject.openConnection();
+                imageConnection.connect();
+
+                int responseCode = imageConnection.getResponseCode();
+                if(responseCode == 200) {
+
+                    InputStream inputStream = imageConnection.getInputStream();
+
+                    image = BitmapFactory.decodeStream((InputStream) new URL(url).getContent());
+                }
+                else
+                {
+                    Toast.makeText(MainActivity.this, "Could not Connect", Toast.LENGTH_SHORT).show();
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            return image;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap fetchedImage) {
+            ImageView image = (ImageView) findViewById(R.id.)
         }
     }
 }
