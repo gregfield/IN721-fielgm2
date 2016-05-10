@@ -12,24 +12,37 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/longlatTxtView"/>
+        android:id="@+id/longlatTxtView"
+        android:text="asdsafa"
+        android:layout_alignBottom="@+id/nearestCitytxtView"
+        android:layout_toLeftOf="@+id/ranLongLatBtn"
+        android:layout_toStartOf="@+id/ranLongLatBtn" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Random Long and Lat"
         android:id="@+id/ranLongLatBtn"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/nearestCitytxtView"
+        android:text="asdsafa"
+        android:layout_marginBottom="54dp"
         android:layout_above="@+id/ranLongLatBtn"
+        android:layout_alignRight="@+id/ranLongLatBtn"
+        android:layout_alignEnd="@+id/ranLongLatBtn" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="58dp" />
+        android:src="@drawable/noimageavailable" />
 </RelativeLayout>

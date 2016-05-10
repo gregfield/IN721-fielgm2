@@ -1,15 +1,20 @@
 package bit.fielgm2.usinglocation;
 
 import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
@@ -27,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
     double latitude;
     String city;
     Random random;
-    ProgressDialog showProgress;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 String name = JSON.getString("geoplugin_place");
                 String countryCode = JSON.getString("geoplugin_countryCode");
 
-                city = name + ", " + countryCode;
+                city = name + "," + countryCode;
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -88,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
     //gets the info from geoplugin on the internet
     public class GeoPluginNearestCity extends AsyncTask<Void,Void,String> {
 
+        ProgressDialog showProgress;
         //shows a progress dialog when looking for a city
         @Override
         protected void onPreExecute(){
@@ -142,11 +146,14 @@ public class MainActivity extends AppCompatActivity {
             showProgress.dismiss();
             nearestCityJson(fetchedString);
             displayInfo();
+            GetImageFromFlickr ge = new GetImageFromFlickr();
+            ge.execute();
         }
     }
 
-    public class GetImageFromFlickr extends AsyncTask<Void,Void,String> {
+    public class GetImageFromFlickr extends AsyncTask<Void,Void,Bitmap> {
 
+        ProgressDialog showProgress;
         //shows a progress dialog when looking for an image
         @Override
         protected void onPreExecute(){
@@ -155,15 +162,18 @@ public class MainActivity extends AppCompatActivity {
 
         //gets an image from flickr
         @Override
-        protected String doInBackground(Void... params)
+        protected Bitmap doInBackground(Void... params)
         {
             String JSONString = "";
+            Bitmap image = null;
             try {
-                String url = "http://api.flickr.com/services/rest/?" +
-                             "&method=" +
-                             "&api_key=eda41a123d459be0f85276d37290651e";
+                String flickrUrl = "https://api.flickr.com/services/rest/?" +
+                             "&method=flickr.photos.search&" +
+                             "api_key=eda41a123d459be0f85276d37290651e" + "&tags=" + city +
+                             "&page=1&per_page=1" +
+                             "&format=json&nojsoncallback=1";
 
-                URL URLObject = new URL(url);
+                URL URLObject = new URL(flickrUrl);
 
                 HttpURLConnection flickrConnection = (HttpURLConnection) URLObject.openConnection();
                 flickrConnection.connect();
@@ -181,6 +191,25 @@ public class MainActivity extends AppCompatActivity {
                         stringBuilder = stringBuilder.append(responseString);
                     }
                     JSONString = stringBuilder.toString();
+
+                    //get image info out of JSON
+                    String[] imageInfo = imageJson(JSONString);
+
+                    //
+                    //new connection to get image
+                    //
+                    if(imageInfo!= null) {
+                        flickrUrl = "https://farm" + imageInfo[0]
+                                + ".staticflickr.com/"
+                                + imageInfo[1] + "/"
+                                + imageInfo[2] + "_" + imageInfo[3] + ".jpg";
+                        URLObject = new URL(flickrUrl);
+                        HttpURLConnection imageConnection = (HttpURLConnection) URLObject.openConnection();
+                        imageConnection.connect();
+                        InputStream imageInputStream = imageConnection.getInputStream();
+
+                        image = BitmapFactory.decodeStream(imageInputStream);
+                    }
                 }
                 else
                 {
@@ -190,13 +219,47 @@ public class MainActivity extends AppCompatActivity {
             catch (Exception e){
                 e.printStackTrace();
             }
-        return JSONString;
+
+                return image;
         }
 
         //closes the progress dialog then calls the methods to get the city and display it
         @Override
-        protected void onPostExecute(String fetchedString) {
+        protected void onPostExecute(Bitmap fetchedImage) {
             showProgress.dismiss();
+            ImageView imageView = (ImageView) findViewById(R.id.imageView);
+            if(fetchedImage != null) {
+                imageView.setImageBitmap(fetchedImage);
+            }
+            else
+            {
+                imageView.setImageResource(R.drawable.noimageavailable);
+            }
         }
+    }
+
+    public String[] imageJson(String JSONString)
+    {
+        String [] imageInfo = new String[4];
+        try {
+            JSONObject imageDataObject = new JSONObject(JSONString);
+            JSONObject images = imageDataObject.getJSONObject("photos");
+            int numberImages =images.getInt("total");
+            JSONArray photoArray = images.getJSONArray("photo");
+
+            if (numberImages == 0) {
+                imageInfo = null;
+            } else {
+                JSONObject photo = photoArray.getJSONObject(0);
+
+                imageInfo[0] = String.valueOf(photo.getInt("farm"));
+                imageInfo[1] = photo.getString("server");
+                imageInfo[2] = photo.getString("id");
+                imageInfo[3] = photo.getString("secret");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return imageInfo;
     }
 }
