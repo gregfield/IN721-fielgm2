@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FirstGoogleMapsApp</string>
+    <string name="google_maps_api" templateMergeStrategy="preserve" translateable="false">
+        AIzaSyC7wzlO8NFkzopqNXx7QIkIQr4v2N2-Vr0</string>
+</resources>
