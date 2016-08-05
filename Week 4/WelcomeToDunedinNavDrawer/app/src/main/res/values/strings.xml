@@ -5,4 +5,7 @@
     <string name="FunThingsToDo">Fun Things To Do</string>
     <string name="Dining">Dining</string>
     <string name="Shopping">Shopping</string>
+
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
 </resources>
